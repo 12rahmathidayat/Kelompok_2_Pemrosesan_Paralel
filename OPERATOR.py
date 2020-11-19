@@ -3,8 +3,8 @@ import paramiko
 def Node1Access():
     pr = paramiko.SSHClient()
     pr.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    pr.connect(hostname='192.168.**.***',username="root",password="****")
-    stdin,stdout,stderr = pr.exec_command("python3 /home/accessNode.py")
+    pr.connect(hostname='192.168.43.240',username="root",password="0312")
+    stdin,stdout,stderr = pr.exec_command("python3 /home/MasterAccessNode1.py")
     output = stdout.readlines()
     for i in output:
         print(i,end="")
@@ -12,8 +12,8 @@ def Node1Access():
 def Node2Access():
     pr = paramiko.SSHClient()
     pr.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    pr.connect(hostname='192.168.**.***',username="root",password="****")
-    stdin,stdout,stderr = pr.exec_command("python3 /home/accessNode2.py")
+    pr.connect(hostname='192.168.43.240',username="root",password="0312")
+    stdin,stdout,stderr = pr.exec_command("python3 /home/MasterAccessNode2.py")
     output = stdout.readlines()
     for i in output:
         print(i,end="")
@@ -21,8 +21,8 @@ def Node2Access():
 def Node3Access():
     pr = paramiko.SSHClient()
     pr.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    pr.connect(hostname='192.168.**.***',username="root",password="****")
-    stdin,stdout,stderr = pr.exec_command("python3 /home/accessNode3.py")
+    pr.connect(hostname='192.168.43.240',username="root",password="0312")
+    stdin,stdout,stderr = pr.exec_command("python3 /home/MasterAccessNode3.py")
     output = stdout.readlines()
     for i in output:
         print(i,end="")
@@ -30,8 +30,8 @@ def Node3Access():
 def Node4Access():
     pr = paramiko.SSHClient()
     pr.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    pr.connect(hostname='192.168.**.***',username="root",password="****")
-    stdin,stdout,stderr = pr.exec_command("python3 /home/accessNode4.py")
+    pr.connect(hostname='192.168.43.240',username="root",password="0312")
+    stdin,stdout,stderr = pr.exec_command("python3 /home/MasterAccessNode4.py")
     output = stdout.readlines()
     for i in output:
         print(i,end="")

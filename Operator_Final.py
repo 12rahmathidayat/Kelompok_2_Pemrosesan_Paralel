@@ -14,19 +14,13 @@ def connect(h, u, p):
 	pr.connect(hostname=h, username=u, password=p)
 
 
-node_1_h = "10.1.13.92"
-node_1_u = "reader"
-node_1_p = "paramiko1"
-
-node_2_h = "10.1.15.3"
-node_2_u = "reader"
-node_2_p = "paramiko2"
+hostname = ["10.1.13.92", "10.1.15.3"]
+username = ["reader", "reader"]
+password = ["paramiko1", "paramiko2"]
 
 node = pilihNode()
-if(node == 1):
-	connect(node_1_h, node_1_u, node_1_p)
-elif(node == 2):
-	connect(node_2_h, node_2_u, node_2_p)
+if(node < len(hostname)):
+	connect(hostname[node  1], username[node - 1], password[node - 1])
 else:
 	print("Pilihan salah")
 	exit()

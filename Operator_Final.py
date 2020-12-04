@@ -19,7 +19,7 @@ username = ["reader", "reader"]
 password = ["paramiko1", "paramiko2"]
 
 node = pilihNode(hostname)
-if(node < len(hostname)):
+if(node <= len(hostname)):
 	connect(hostname[node - 1], username[node - 1], password[node - 1])
 else:
 	print("Pilihan salah")
@@ -35,9 +35,9 @@ for x in output:
     print(x, end='')
 
 while 'Keliling' not in output[-1]:
-    stdin,stdout,stderr = pr.exec_command(bash_command)
     param_temp = input(" ")
     param.append(param_temp)
+    stdin,stdout,stderr = pr.exec_command(bash_command)
     for x in param:
         stdin.write(x + "\n")
     stdin.flush()

@@ -1,10 +1,10 @@
 import paramiko
 pr = paramiko.SSHClient()
 
-def pilihNode():
+def pilihNode(hostname):
 	print("------------+ Menu Node +------------")
-	print("1. Node 1 [IP: " + node_1_h + "]")
-	print("2. Node 2 [IP: " + node_2_h + "]")
+	print("1. Node 1 [IP: " + hostname[0] + "]")
+	print("2. Node 2 [IP: " + hostname[1] + "]")
 	print()
 	node = int(input("Pilih Node yang ingin dilihat: "))
 	return node
@@ -18,7 +18,7 @@ hostname = ["10.1.13.92", "10.1.15.3"]
 username = ["reader", "reader"]
 password = ["paramiko1", "paramiko2"]
 
-node = pilihNode()
+node = pilihNode(hostname)
 if(node < len(hostname)):
 	connect(hostname[node - 1], username[node - 1], password[node - 1])
 else:

@@ -49,10 +49,47 @@ def getInputUser():
 	menuFormula()
 	getFormula = input("/=>Masukkan Formula :")
 	getFm_arr = getFormula.split(",")
+	user_validate_FM(getFm_arr)
+	DataProcess(getBD_arr,getFm_arr)
 
+def Keliling_persegi():
+		print("<--------------------------------------->")
+		print("</>----MENGHITUNG KELILING PERSEGI----</>")	
+		print("<--------------------------------------->")
 
+def Luas_persegi():
+		print("<--------------------------------------->")
+		print("</>------MENGHITUNG LUAS PERSEGI------</>")	
+		print("<--------------------------------------->")
 
+def Keliling_lingkaran():
+		print("<----------------------------------------->")
+		print("</>----MENGHITUNG KELILING LINGKARAN----</>")	
+		print("<----------------------------------------->")
 
+def Luas_lingkaran():
+		print("<----------------------------------------->")
+		print("</>------MENGHITUNG LUAS LINGKARAN------</>")	
+		print("<----------------------------------------->")
+
+def DataProcess(param_BD=[],param_FM=[]):
+	data={}
+	for BD in param_BD:
+		for FM in param_FM:
+			if int(BD) == 1:
+				if int(FM) == 1:
+					Keliling_persegi()
+					loop_app()
+				elif int(FM) == 2:
+					Luas_persegi()
+					loop_app()s
+			elif int(BD) == 2:
+				if int(FM) == 1:
+					Keliling_lingkaran()
+					loop_app()
+				elif int(FM) == 2:
+					Luas_lingkaran()
+					loop_app()
 
 def loop_app():
 	user_acc=input("ingin mengulang Y/y/N/n :")
@@ -87,7 +124,7 @@ def user_validate_BD(user_input=[]):
 		if i == "" or i not in number_valid or int(i) not in BD_valid:
 				print("input tidak tersedia !")
 				loop_app()
-				
+
 def user_validate_FM(user_input=[]):
 	number_valid = ["1","2"]
 	FM_valid = [1,2]

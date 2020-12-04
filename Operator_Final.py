@@ -20,7 +20,7 @@ password = ["paramiko1", "paramiko2"]
 
 node = pilihNode()
 if(node < len(hostname)):
-	connect(hostname[node  1], username[node - 1], password[node - 1])
+	connect(hostname[node - 1], username[node - 1], password[node - 1])
 else:
 	print("Pilihan salah")
 	exit()

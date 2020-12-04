@@ -50,30 +50,72 @@ def getInputUser():
 	getFormula = input("/=>Masukkan Formula :")
 	getFm_arr = getFormula.split(",")
 	user_validate_FM(getFm_arr)
-	DataProcess(getBD_arr,getFm_arr)
+	DataProcessBD(getBD_arr,getFm_arr)
+
+	
 
 def Keliling_persegi():
+		dataContain={}
 		print("<--------------------------------------->")
 		print("</>----MENGHITUNG KELILING PERSEGI----</>")	
 		print("<--------------------------------------->")
+		dataContain['side']=input("input sisi(s) : ")
+		user_validate_input_value(dataContain['side'])
+		return dataContain
 
 def Luas_persegi():
+		dataContain={}
 		print("<--------------------------------------->")
 		print("</>------MENGHITUNG LUAS PERSEGI------</>")	
 		print("<--------------------------------------->")
+		dataContain['side']=input("input sisi(s) : ")
+		user_validate_input_value(dataContain['side'])
+		return dataContain
 
 def Keliling_lingkaran():
+		dataContain={}
 		print("<----------------------------------------->")
 		print("</>----MENGHITUNG KELILING LINGKARAN----</>")	
 		print("<----------------------------------------->")
+		dataContain['radius']=input("input radius(r) : ")
+		user_validate_input_value(dataContain['radius'])
+		return dataContain
 
 def Luas_lingkaran():
+		dataContain={}
 		print("<----------------------------------------->")
 		print("</>------MENGHITUNG LUAS LINGKARAN------</>")	
 		print("<----------------------------------------->")
+		dataContain['radius']=input("input radius(r) : ")
+		user_validate_input_value(dataContain['radius'])
+		return dataContain
 
-def DataProcess(param_BD=[],param_FM=[]):
-	data={}
+def Keliling_segitiga():
+		dataContain={}
+		print("<----------------------------------------->")
+		print("</>----MENGHITUNG KELILING SEGITIGA-----</>")	
+		print("<----------------------------------------->")
+		dataContain['sideA']=input("input sisi A : ")
+		user_validate_input_value(dataContain['sideA'])
+		dataContain['sideB']=input("input sisi B : ")
+		user_validate_input_value(dataContain['sideB'])
+		dataContain['sideC']=input("input sisi C : ")
+		user_validate_input_value(dataContain['sideC'])
+		return dataContain
+
+
+def Luas_segitiga():
+		dataContain={}
+		print("<----------------------------------------->")
+		print("</>------MENGHITUNG LUAS SEGITIGA-------</>")	
+		print("<----------------------------------------->")
+		dataContain['base']=input("input alas    : ")
+		user_validate_input_value(dataContain['base'])
+		dataContain['high']=input("input tinggi : ")
+		user_validate_input_value(dataContain['high'])
+		return dataContain
+
+def DataProcessBD(param_BD=[],param_FM=[]):
 	for BD in param_BD:
 		for FM in param_FM:
 			if int(BD) == 1:
@@ -82,7 +124,7 @@ def DataProcess(param_BD=[],param_FM=[]):
 					loop_app()
 				elif int(FM) == 2:
 					Luas_persegi()
-					loop_app()s
+					loop_app()
 			elif int(BD) == 2:
 				if int(FM) == 1:
 					Keliling_lingkaran()
@@ -90,6 +132,12 @@ def DataProcess(param_BD=[],param_FM=[]):
 				elif int(FM) == 2:
 					Luas_lingkaran()
 					loop_app()
+			elif int(BD) == 3 :
+				if int(FM) == 1:
+					Keliling_segitiga()
+				elif int(FM) == 2:
+					Luas_segitiga()
+
 
 def loop_app():
 	user_acc=input("ingin mengulang Y/y/N/n :")
@@ -132,6 +180,12 @@ def user_validate_FM(user_input=[]):
 		if i == "" or i not in number_valid or int(i) not in FM_valid:
 				print("input tidak tersedia !")
 				loop_app()
+
+def user_validate_input_value(user_v=[]):
+	try:
+		float(user_v)
+	except Exception:
+		print("input Error")
 
 def app_Clean():
 	system("cls")

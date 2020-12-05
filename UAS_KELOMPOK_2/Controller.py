@@ -55,45 +55,52 @@ def getInputUser():
 	getFm_arr = getFormula.split(",")
 	user_validate_FM(getFm_arr)
 	dataInputSend.append(getFM_arr)
-	dataBD=DataProcessBD(getBD_arr,getFormula)
+	dataBD=DataProcessBD(getBD_arr,getFM_arr)
 	DataProcessBD(getBD_arr,getFm_arr)
 	sendDataNode(dataInputSend)
 
 
 def Keliling_persegi():
+		print("|'''''''''''''''''''''''''''''''''''''''|")
 		print("<--------------------------------------->")
 		print("</>----MENGHITUNG KELILING PERSEGI----</>")	
 		print("<--------------------------------------->")
+		print("|.......................................|")
 
 def Luas_persegi():
+		print("|'''''''''''''''''''''''''''''''''''''''|")
 		print("<--------------------------------------->")
 		print("</>------MENGHITUNG LUAS PERSEGI------</>")	
 		print("<--------------------------------------->")
+		print("|.......................................|")
 
 def Keliling_lingkaran():
+		print("|'''''''''''''''''''''''''''''''''''''''''|")
 		print("<----------------------------------------->")
 		print("</>----MENGHITUNG KELILING LINGKARAN----</>")	
 		print("<----------------------------------------->")
-
+		print("|.........................................|")
 
 def Luas_lingkaran():
+		print("|'''''''''''''''''''''''''''''''''''''''''|")
 		print("<----------------------------------------->")
 		print("</>------MENGHITUNG LUAS LINGKARAN------</>")	
 		print("<----------------------------------------->")
-
+		print("|.........................................|")
 
 def Keliling_segitiga():
+		print("|'''''''''''''''''''''''''''''''''''''''''|")
 		print("<----------------------------------------->")
 		print("</>----MENGHITUNG KELILING SEGITIGA-----</>")	
 		print("<----------------------------------------->")
-		
-
+		print("|.........................................|")
 
 def Luas_segitiga():
+		print("|'''''''''''''''''''''''''''''''''''''''''|")
 		print("<----------------------------------------->")
 		print("</>------MENGHITUNG LUAS SEGITIGA-------</>")	
 		print("<----------------------------------------->")
-		
+		print("|.........................................|")
 
 def DataProcessBD(param_BD=[],param_FM=[]):
 	dataContain={}
@@ -134,7 +141,6 @@ def DataProcessBD(param_BD=[],param_FM=[]):
 					user_validate_input_value(dataContain['high'])
 
 	return dataContain
-
 
 def loop_app():
 	user_acc=input("ingin mengulang Y/y/N/n :")
@@ -177,7 +183,21 @@ def user_validate_FM(user_input=[]):
 		if i == "" or i not in number_valid or int(i) not in FM_valid:
 				print("input tidak tersedia !")
 				loop_app()
-def sendDataNode(node="",getBD="",getFM="",dataBD=""):
+
+def sendDataNode(node="",getBD="",sendDataNode=[],getFM="",dataBD={}):
+	dataNode=sendDataNode[0]
+	dataSend=int(Node)-1,data[1],data[2],data[3]
+
+	conn = paramiko.SSHClient()
+	conn.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+	conn.connect(hostname=Node_host[node], username="root", password="0312")
+	command='cd /home/; python3 -c "from DataNode import DataSend; DataSend(' + "'" + getBD + "' , '" + getFM + "' , " + str(dataBD) + ')"'
+	stdin,stdout,stderr = sshConn.exec_command(command)
+	output = stdout.readlines()
+	for i in output:
+        print(i, end="")
+
+    sshConn.close()
 
 def user_validate_input_value(user_v=[]):
 	try:

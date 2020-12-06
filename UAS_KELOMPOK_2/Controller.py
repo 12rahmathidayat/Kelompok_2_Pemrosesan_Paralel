@@ -184,9 +184,11 @@ def user_validate_FM(user_input=[]):
 				print("input tidak tersedia !")
 				loop_app()
 
-def sendDataNode(node="",getBD="",sendDataNode=[],getFM="",dataBD={}):
-	dataNode=sendDataNode[0]
-	dataSend=int(Node)-1,data[1],data[2],data[3]
+def sendDataNode(node="",getBD="",dataInputSend=[],getFM="",dataBD={}):
+	Node_arr=['node1','node2','node3','node4']
+	ProcData=data[0]
+	for node in proc_nd :
+		data=int(node) - 1, data[1], data[2], data[3]
 
 	conn = paramiko.SSHClient()
 	conn.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -197,7 +199,7 @@ def sendDataNode(node="",getBD="",sendDataNode=[],getFM="",dataBD={}):
 	for i in output:
         print(i, end="")
 
-    sshConn.close()
+    conn.close()
 
 def user_validate_input_value(user_v=[]):
 	try:

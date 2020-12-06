@@ -10,4 +10,6 @@ def showIp():
 	print("|---------------------|")
 
 def DataBD(getFm="",getBD="",dataBD=""):
-	
+	formula = getFm
+	BD=getBD
+	dataBD = json.loads(json.dumps(dataBD))

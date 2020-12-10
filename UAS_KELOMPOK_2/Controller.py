@@ -1,3 +1,4 @@
+import paramiko
 from os import system
 import sys
 

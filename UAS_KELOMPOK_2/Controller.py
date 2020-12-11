@@ -1,224 +1,212 @@
-import paramiko
-from os import system
 import sys
+from os import system
+import paramiko
+import json
+
+def systemClean():
+    system("clear")
+
+def Exit():
+    exit()
+
+def validateNode(data="1", default = 1):
+    number_s = ["1","2","3","4"]
+    number = [1,2,3,4]
+    if default == 1 :
+        node = data.split(";")
+        for i in node :
+            if i == "" or i not in number_s or int(i) not in number :
+                print("[!] Input Tidak Valid")
+                loop_app()
+
+def validateBd(data="2", default = 2):
+    number_s = ["1","2","3"]
+    number = [1,2,3]
+    if default == 2 :
+        bd = data.split(";")
+        for i in bd :
+            if i == "" or i not in number_s or int(i) not in number :
+                print("[!] Input Tidak Valid")
+                loop_app()
+
+def validateFm(data="3", default = 3):
+    var_fm = ["k", "l", "K", "L"]
+    if default == 3 :
+        bd = data.split(";")
+        for i in bd :
+            if i == "" or i not in var_fm :
+                print("[!] Input Tidak Valid")
+                loop_app()
+
+def DataBdValid(bd_data = ""):
+    try :
+        float(bd_data)
+    except ValueError:
+        print("[!] Input Tidak Valid")
+        loop_app()
+
+def loop_app():
+    user_acc=input("ingin mengulang Y/y/N/n :")
+    userDecission(user_acc)
+
+def userDecission(user_acc):
+    if user_acc == "Y" or user_acc == "y":
+        systemClean()
+        menuHeader()
+        getInputUser()
+    elif user_acc == "N" or user_acc == "n":
+        print("program Exit")
+        Exit()
+    else:
+        print("Perintah Tidak Tersedia !!")
+        loop_app()
 
 def menuHeader():
-	print("<------------------------------>")
+	print("+------------------------------+")
 	print("|  SELAMAT DATANG DI OPERASI   |")
 	print("|         MATEMATIKA           |")
 	print("| PYTHON PEMROSESAN PARALEL    |")
 	print("|   created by kelompok 2      |")
-	print("<------------------------------>")
-	print("<==============================>")
+	print("+------------------------------+")
+	print("|==============================|")
 	print("|     SILAHKAN PILIH MENU      |")
-	print("<==============================>")
+	print("+==============================+")
 
 def menuNode():
-	print("<==============================>")
+	print("+==============================+")
 	print("|          NODE MENU           |")
-	print("<==============================>")
-	print("--------------------------------")
-	print("|[1]Node1 || [3]Node3 |")
-	print("|[2]Node2 || [4]Node4 |")
-	print("--------------------------------")
+	print("+==============================+")
+	print("+------------------------------+")
+	print("|[1]Node1 || [3]Node3          |")
+	print("|[2]Node2 || [4]Node4          |")
+	print("+------------------------------+")
 
 def menuBangunDatar():
-		print("<==============================>")
+		print("+==============================+")
 		print("|       BANGUN DATAR MENU      |")
-		print("<==============================>")
-		print("--------------------------------")
-		print("|[1]Persegi   || [3]Segitiga |")
-		print("|[2]Lingkaran ||             |")
-		print("--------------------------------")
+		print("+==============================+")
+		print("+------------------------------+")
+		print("|[1]Segitiga   || [3]Persegi   |")
+		print("|[2]Lingkaran  ||              |")
+		print("+------------------------------+")
 def menuFormula():
-		print("<==============================>")
+		print("+==============================+")
 		print("|         FORMULA MENU         |")
-		print("<==============================>")
-		print("--------------------------------")
-		print("|[1]KELILING         |")
-		print("|[2]LUAS             |")
-		print("--------------------------------")
+		print("+==============================+")
+		print("+------------------------------+")
+		print("|[k]KELILING   || [l]LUAS      |")
+		print("+------------------------------+")
+
+
+def interfaceKllSgt():
+    print("[]===========================[]")
+    print("-------keliling Segitiga-------")
+    print("[]---------------------------[]")
+
+def interfaceLSgt():
+    print("[]===========================[]")
+    print("-------Luas Segitiga-------")
+    print("[]---------------------------[]")
+
+def interfaceLSgt():
+    print("[]===========================[]")
+    print("-------Luas Segitiga-------")
+    print("[]---------------------------[]")
+
+def interfaceKlLlingkaran():
+     print("[]-------------------------------------[]")
+     print("[]------keliling & luas Lingkaran------[]")
+     print("[]-------------------------------------[]")
+
+def interfaceKlLPersegi():
+     print("[]-------------------------------------[]")
+     print("[]------keliling & luas Persegi------[]")
+     print("[]-------------------------------------[]")
+
+
+def getBdData(get_bd = "", get_fm = ""):
+    bd_var = get_bd.split(";")
+    fm_var = get_fm.split(";")
+
+    data = {}
+
+    for bd in bd_var :
+        if int(bd) == 1 :
+            for fm in fm_var :
+                if fm == "k" :
+                    interfaceKllSgt()
+                    data['side1'] = input("Sisi 1 : ")
+                    DataBdValid(data['side1'])
+                    data['side2'] = input("Sisi 2 : ")
+                    DataBdValid(data['side2'])
+                    data['side3'] = input("Sisi 3 : ")
+                    DataBdValid(data['side3'])
+
+                elif fm == "l" :
+                    interfaceLSgt()
+                    data['base'] = input("Alas   : ")
+                    DataBdValid(data['base'])
+                    data['high'] = input("Tinggi : ")
+                    DataBdValid(data['high'])
+
+        elif int(bd) == 2 :
+            interfaceKlLlingkaran()
+            data['r'] = input("Jari-jari Lingkaran : ")
+            DataBdValid(data['r'])
+            
+        elif int(bd) == 3 :
+            data['side1'] = input("Sisi 1 : ")
+            DataBdValid(data['side1'])
+            data['side2'] = input("Sisi 2 : ")
+            DataBdValid(data['side2'])
+
+    return data
 
 def getInputUser():
-	dataInputSend=[]
-	dataBD=
-	getNode=input("/=>Masukkan Node :")
-	getNode_arr=getNode.split(",")
-	user_validate_node(getNode_arr)
-	dataInputSend.append(getNode_arr)
-	menuBangunDatar()
-	getBangundatar = input("/=>Masukkan Bangun Datar :")
-	getBD_arr = getBangundatar.split(",")
-	user_validate_BD(getBD_arr)
-	dataInputSend.append(getBD_arr)
-	menuFormula()
-	getFormula = input("/=>Masukkan Formula :")
-	getFm_arr = getFormula.split(",")
-	user_validate_FM(getFm_arr)
-	dataInputSend.append(getFM_arr)
-	dataBD=DataProcessBD(getBD_arr,getFM_arr)
-	DataProcessBD(getBD_arr,getFm_arr)
-	sendDataNode(dataInputSend)
+    data = []
+
+    menuNode()
+    nd = input("[-->]Node\t\t: ")
+    validateNode(nd,1)
+    menuBangunDatar()
+    bd = input("[-->]Bangun Datar\t: ")
+    validateBd(bd,2)
+    menuFormula()
+    fm = input("[-->]Formula\t\t: ")
+    validateFm(fm,3)
+
+    data_bd = getBdData(bd, fm)
+
+    data.append(nd)
+    data.append(bd)
+    data.append(fm)
+    data.append(data_bd)
+
+    prepareData(data)
 
 
-def Keliling_persegi():
-		print("|'''''''''''''''''''''''''''''''''''''''|")
-		print("<--------------------------------------->")
-		print("</>----MENGHITUNG KELILING PERSEGI----</>")	
-		print("<--------------------------------------->")
-		print("|.......................................|")
+def prepareData(data = []):
+    proc_nd = data[0].split(";")
 
-def Luas_persegi():
-		print("|'''''''''''''''''''''''''''''''''''''''|")
-		print("<--------------------------------------->")
-		print("</>------MENGHITUNG LUAS PERSEGI------</>")	
-		print("<--------------------------------------->")
-		print("|.......................................|")
+    for node in proc_nd :
+        sendRequestToNode(int(node) - 1, data[1], data[2], data[3])
+    
+    loop_app()
 
-def Keliling_lingkaran():
-		print("|'''''''''''''''''''''''''''''''''''''''''|")
-		print("<----------------------------------------->")
-		print("</>----MENGHITUNG KELILING LINGKARAN----</>")	
-		print("<----------------------------------------->")
-		print("|.........................................|")
+def sendRequestToNode(node = 1, bd = "", formula = "", data_bd = {}):
+    node_list = ["192.168.43.116", "192.168.43.44", "192.168.43.100", "192.168.43.178"]
 
-def Luas_lingkaran():
-		print("|'''''''''''''''''''''''''''''''''''''''''|")
-		print("<----------------------------------------->")
-		print("</>------MENGHITUNG LUAS LINGKARAN------</>")	
-		print("<----------------------------------------->")
-		print("|.........................................|")
-
-def Keliling_segitiga():
-		print("|'''''''''''''''''''''''''''''''''''''''''|")
-		print("<----------------------------------------->")
-		print("</>----MENGHITUNG KELILING SEGITIGA-----</>")	
-		print("<----------------------------------------->")
-		print("|.........................................|")
-
-def Luas_segitiga():
-		print("|'''''''''''''''''''''''''''''''''''''''''|")
-		print("<----------------------------------------->")
-		print("</>------MENGHITUNG LUAS SEGITIGA-------</>")	
-		print("<----------------------------------------->")
-		print("|.........................................|")
-
-def DataProcessBD(param_BD=[],param_FM=[]):
-	dataContain={}
-	for BD in param_BD:
-		for FM in param_FM:
-			if int(BD) == 1:
-				if int(FM) == 1:
-					Keliling_persegi()
-					dataContain['side']=input("input sisi(s) : ")
-					user_validate_input_value(dataContain['side'])
-				elif int(FM) == 2:
-					Luas_persegi()
-					dataContain['side']=input("input sisi(s) : ")
-					user_validate_input_value(dataContain['side'])
-			elif int(BD) == 2:
-				if int(FM) == 1:
-					Keliling_lingkaran()
-					dataContain['radius']=input("input radius(r) : ")
-					user_validate_input_value(dataContain['radius'])
-				elif int(FM) == 2:
-					Luas_lingkaran()
-					dataContain['radius']=input("input radius(r) : ")
-					user_validate_input_value(dataContain['radius'])
-			elif int(BD) == 3 :
-				if int(FM) == 1:
-					Keliling_segitiga()
-					dataContain['sideA']=input("input sisi A : ")
-					user_validate_input_value(dataContain['sideA'])
-					dataContain['sideB']=input("input sisi B : ")
-					user_validate_input_value(dataContain['sideB'])
-					dataContain['sideC']=input("input sisi C : ")
-					user_validate_input_value(dataContain['sideC'])
-				elif int(FM) == 2:
-					Luas_segitiga()
-					dataContain['base']=input("input alas    : ")
-					user_validate_input_value(dataContain['base'])
-					dataContain['high']=input("input tinggi : ")
-					user_validate_input_value(dataContain['high'])
-
-	return dataContain
-
-def loop_app():
-	user_acc=input("ingin mengulang Y/y/N/n :")
-	userDecission(user_acc)
-
-def userDecission(user_acc):
-	if user_acc == "Y" or user_acc == "y":
-		app_Clean()
-		menuHeader()
-		menuNode()
-		menuBangunDatar()
-		getInputUser()
-	elif user_acc == "N" or user_acc == "n":
-		app_Clean()
-		app_exit()
-	else:
-		print("Perintah Tidak Tersedia !!")
-		loop_app()
-
-def user_validate_node(user_input=[]):
-	number_valid = ["1","2","3","4"]
-	Node_valid = [1,2,3,4]
-	for i in user_input:
-		if i == "" or i not in number_valid or int(i) not in Node_valid:
-				print("input tidak tersedia !")
-				loop_app()
-
-def user_validate_BD(user_input=[]):
-	number_valid = ["1","2","3"]
-	BD_valid = [1,2,3]
-	for i in user_input:
-		if i == "" or i not in number_valid or int(i) not in BD_valid:
-				print("input tidak tersedia !")
-				loop_app()
-
-def user_validate_FM(user_input=[]):
-	number_valid = ["1","2"]
-	FM_valid = [1,2]
-	for i in user_input:
-		if i == "" or i not in number_valid or int(i) not in FM_valid:
-				print("input tidak tersedia !")
-				loop_app()
-
-def sendDataNode(node="",getBD="",dataInputSend=[],getFM="",dataBD={}):
-	Node_arr=['node1','node2','node3','node4']
-	ProcData=data[0]
-	for node in proc_nd :
-		data=int(node) - 1, data[1], data[2], data[3]
-
-	conn = paramiko.SSHClient()
-	conn.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-	conn.connect(hostname=Node_host[node], username="root", password="0312")
-	command='cd /home/; python3 -c "from DataNode import DataSend; DataSend(' + "'" + getBD + "' , '" + getFM + "' , " + str(dataBD) + ')"'
-	stdin,stdout,stderr = sshConn.exec_command(command)
-	output = stdout.readlines()
-	for i in output:
+    Conn = paramiko.SSHClient()
+    Conn.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    Conn.connect(hostname=node_list[node], username="root", password="123")
+    cmd = 'cd /home/apps; python3 -c "from nodeData import sendData; sendData(' + "'" + bd + "' , '" + formula + "' , " + str(data_bd) + ')"'
+    stdin,stdout,stderr = Conn.exec_command(cmd)
+    output = stdout.readlines()
+    for i in output:
         print(i, end="")
 
-    conn.close()
+    Conn.close()
 
-def user_validate_input_value(user_v=[]):
-	try:
-		float(user_v)
-	except Exception:
-		print("input Error")
-
-def app_Clean():
-	system("cls")
-
-def app_exit():
-	exit()
-
-app_Clean()
+systemClean()
 menuHeader()
-menuNode()
 getInputUser()
-
-
-
-

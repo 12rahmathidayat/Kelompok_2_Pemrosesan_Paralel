@@ -182,18 +182,18 @@ def getInputUser():
     data.append(fm)
     data.append(data_bd)
 
-    prepareData(data)
+    prepData(data)
 
 
-def prepareData(data = []):
+def prepData(data = []):
     proc_nd = data[0].split(";")
 
     for node in proc_nd :
-        sendRequestToNode(int(node) - 1, data[1], data[2], data[3])
+        sendToNode(int(node) - 1, data[1], data[2], data[3])
     
     loop_app()
 
-def sendRequestToNode(node = 1, bd = "", formula = "", data_bd = {}):
+def sendToNode(node = 1, bd = "", formula = "", data_bd = {}):
     node_list = ["192.168.43.116", "192.168.43.44", "192.168.43.100", "192.168.43.178"]
 
     Conn = paramiko.SSHClient()
